@@ -40,7 +40,7 @@ cacheSolve <- function(x, ...) {
   
   ## checks if the inverse already exists
   if(!is.null(m)) {
-    # message("getting cached data")
+    message("getting cached data")
     return(m)
   }
   
@@ -51,4 +51,16 @@ cacheSolve <- function(x, ...) {
   m <- solve(data, ...)
   x$setInv(m)
   m
+  
+  ## to test the code, run the following:
+  ## > source("cachematrix.R")
+  ## > a <- matrix(1:4, 2, 2)
+  ## > b <- makeCacheMatrix(a)
+  ## > cacheSolve(b)
+  ## 
+  ## this calculates the inverse of matrix a
+  ##
+  ## > cacheSolve(b)
+  ## since the matrix did not change, running cacheSolve(b) again
+  ## will get the cached inverse instead of recalculating
 }
